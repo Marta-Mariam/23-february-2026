@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>23 Февраля — ЦАД</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <div class="floating-stars" id="floating-stars"></div>
+
+        <!-- ===== INTRO ===== -->
+        <div id="screen-intro" class="screen active">
+            <div class="intro-content">
+                <div class="general-portrait">
+                    <div class="general-hat"><div class="hat-star">★</div></div>
+                    <div class="general-frame">
+                        <div class="general-face">
+                            <div class="general-eyes"><div class="eye"></div><div class="eye"></div></div>
+                            <div class="general-mustache"></div>
+                            <div class="general-mouth"></div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="title-main">23 ФЕВРАЛЯ</h1>
+                <div class="divider">★ ★ ★</div>
+                <h2 class="title-sub">Центр Архивных Документов</h2>
+                <p class="title-city">Санкт-Петербург</p>
+                <button id="btn-start" class="btn-military">⚔️ Начать миссию ⚔️</button>
+            </div>
+        </div>
+
+        <!-- ===== NAME INPUT ===== -->
+        <div id="screen-name" class="screen">
+            <div class="screen-content">
+                <div class="commander-block">
+                    <div class="general-portrait small">
+                        <div class="general-hat"><div class="hat-star">★</div></div>
+                        <div class="general-frame">
+                            <div class="general-face">
+                                <div class="general-eyes"><div class="eye"></div><div class="eye"></div></div>
+                                <div class="general-mustache"></div>
+                                <div class="general-mouth talking"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="speech-bubble">
+                        <p>Стой! Кто идёт?</p>
+                        <p>Назовись, доблестный воин!</p>
+                    </div>
+                </div>
+                <div class="name-input-group">
+                    <input type="text" id="player-name" class="input-military"
+                           placeholder="Введи своё имя, боец..."
+                           maxlength="30" autocomplete="off">
+                    <button id="btn-name" class="btn-military" disabled>Готов к бою!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== BRIEFING ===== -->
+        <div id="screen-briefing" class="screen">
+            <div class="screen-content">
+                <div class="commander-block">
+                    <div class="general-portrait small">
+                        <div class="general-hat"><div class="hat-star">★</div></div>
+                        <div class="general-frame">
+                            <div class="general-face">
+                                <div class="general-eyes"><div class="eye"></div><div class="eye"></div></div>
+                                <div class="general-mustache"></div>
+                                <div class="general-mouth talking"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="speech-bubble">
+                        <p id="briefing-text"></p>
+                    </div>
+                </div>
+                <button id="btn-briefing" class="btn-military">Приступить к заданию! ⚔️</button>
+            </div>
+        </div>
+
+        <!-- ===== QUESTIONS (SWIPE) ===== -->
+        <div id="screen-question" class="screen">
+            <div class="question-header">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="question-counter" id="question-counter"></p>
+            </div>
+
+            <div class="swipe-area" id="swipe-area">
+                <div class="swipe-overlay swipe-overlay-left" id="overlay-left"></div>
+                <div class="swipe-overlay swipe-overlay-right" id="overlay-right"></div>
+
+                <div class="swipe-card" id="swipe-card">
+                    <div class="card-icon" id="card-icon"></div>
+                    <div class="card-question" id="card-question"></div>
+                    <div class="card-hints">
+                        <span class="hint hint-left">◀ <span id="hint-left"></span></span>
+                        <span class="hint hint-right"><span id="hint-right"></span> ▶</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tap-buttons">
+                <button class="btn-tap btn-tap-left" id="btn-tap-left"></button>
+                <button class="btn-tap btn-tap-right" id="btn-tap-right"></button>
+            </div>
+        </div>
+
+        <!-- ===== LOADING ===== -->
+        <div id="screen-loading" class="screen">
+            <div class="screen-content">
+                <div class="general-portrait">
+                    <div class="general-hat"><div class="hat-star">★</div></div>
+                    <div class="general-frame">
+                        <div class="general-face">
+                            <div class="general-eyes"><div class="eye"></div><div class="eye"></div></div>
+                            <div class="general-mustache"></div>
+                            <div class="general-mouth talking"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="loading-text" id="loading-text"></p>
+            </div>
+        </div>
+
+        <!-- ===== RESULT ===== -->
+        <div id="screen-result" class="screen">
+            <canvas id="confetti-canvas"></canvas>
+            <div class="result-scroll">
+                <div class="result-container" id="result-container">
+                    <div class="result-badge" id="result-badge"></div>
+                    <h2 class="result-title" id="result-title"></h2>
+                    <p class="result-century" id="result-century"></p>
+                    <div class="result-divider">★</div>
+                    <p class="result-greeting" id="result-greeting"></p>
+                    <p class="result-description" id="result-description"></p>
+                    <div class="result-congrats">
+                        <p class="congrats-main">🎖️ С Днём Защитника Отечества! 🎖️</p>
+                        <p class="congrats-from">Приказом Генерал-Архивариуса ЦАД</p>
+                        <p class="congrats-city">Санкт-Петербург, 23 февраля 2026</p>
+                    </div>
+                    <div class="result-buttons">
+                        <button id="btn-save" class="btn-military">📥 Сохранить картинку</button>
+                        <button id="btn-restart" class="btn-military btn-secondary">🔄 Пройти заново</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
