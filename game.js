@@ -249,7 +249,7 @@ function showQuestion(index) {
 // КАК РАБОТАЕТ РЕЗУЛЬТАТ:
 // Каждый свайп/нажатие вызывает answerQuestion.
 // Она читает category из вопроса и делает state.scores[category]++.
-// После всех 10 вопросов calculateResult() ищет category с max очков.
+// После всех 15 вопросов calculateResult() ищет category с max очков.
 function answerQuestion(direction) {
     var q = questions[state.currentQuestion];
     var choice = direction === 'left' ? q.left : q.right;
